@@ -100,6 +100,11 @@ public class ItemBuilder implements Cloneable {
         return this;
     }
 
+    /**
+     * Make item glow
+     *
+     * @return
+     */
     public ItemBuilder addGLow()
     {
         is.addUnsafeEnchantment(Enchantment.LURE,1);
@@ -117,8 +122,7 @@ public class ItemBuilder implements Cloneable {
     public ItemBuilder addLoreLine(String line)
     {
         ItemMeta     im   = is.getItemMeta();
-        List<String> lore = new ArrayList<>();
-        if (im.hasLore()) lore = new ArrayList<>(im.getLore());
+        List<String> lore = im.hasLore()? new ArrayList<>(im.getLore()) : new ArrayList<>();
         lore.add(line);
         im.setLore(lore);
         is.setItemMeta(im);
@@ -134,7 +138,7 @@ public class ItemBuilder implements Cloneable {
     public ItemBuilder addLoreLine(String line, int pos)
     {
         ItemMeta     im   = is.getItemMeta();
-        List<String> lore = new ArrayList<>(im.getLore());
+        List<String> lore = im.hasLore()? new ArrayList<>(im.getLore()) : new ArrayList<>();
         lore.set(pos, line);
         im.setLore(lore);
         is.setItemMeta(im);
@@ -149,8 +153,7 @@ public class ItemBuilder implements Cloneable {
     public ItemBuilder addLoreLine(List<String> lines)
     {
         ItemMeta     im   = is.getItemMeta();
-        List<String> lore = new ArrayList<>(im.getLore());
-        if (im.hasLore()) lore = new ArrayList<>(im.getLore());
+        List<String> lore = im.hasLore()? new ArrayList<>(im.getLore()) : new ArrayList<>();
         lore.addAll(lines);
         im.setLore(lore);
         is.setItemMeta(im);
